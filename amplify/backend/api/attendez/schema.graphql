@@ -1,0 +1,37 @@
+type Student @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  email: String!
+  grade: String!
+  enrroll: String!
+  group: String!
+  classs: [Class] @manyToMany(relationName: "ClassStudent")
+}
+
+type Attendance @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  day: AWSDate!
+  time: AWSTime!
+  classID: ID! @index(name: "byClass")
+  Student: Student @hasOne
+}
+
+type Teacher @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  Classes: [Class] @hasMany(indexName: "byTeacher", fields: ["id"])
+}
+
+type Class @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  days: [Int!]!
+  startHour: String!
+  grade: String!
+  group: String!
+  teacherID: ID! @index(name: "byTeacher")
+  Attendances: [Attendance] @hasMany(indexName: "byClass", fields: ["id"])
+  Student: [Student] @manyToMany(relationName: "ClassStudent")
+}
+ 
