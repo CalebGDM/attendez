@@ -3,7 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Class from './pages/ClassesDashboard'
-import Student from './pages/student'
+import Student from './pages/StudentRegister'
+
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

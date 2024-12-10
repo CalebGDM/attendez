@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+
+import { useState } from 'react'
 import clases from '../data/clases'
 
 function Class() {
@@ -19,7 +20,7 @@ function Class() {
         <div>
           <button>QR</button>
         </div>
-        
+
       </div>
     </div>
     </div>
