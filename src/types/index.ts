@@ -1,10 +1,12 @@
 interface Class  {
     id: string;
     name: string;
-    description: string;
+    description?: string | null;
     days: number[];
     startHour: string;
-    teacher: string;
+    teacher?: {
+        name: string;
+    };
     group: string;
     grade: string;
 }

@@ -10,6 +10,11 @@
       "StackName": "amplify-attendez-dev-5b7e0",
       "StackId": "arn:aws:cloudformation:us-west-1:010232996719:stack/amplify-attendez-dev-5b7e0/2fb6a370-b72b-11ef-84bb-06a40f8687c3",
       "AmplifyAppId": "d3q6e59e6emvz"
+    },
+    "categories": {
+      "api": {
+        "attendez": {}
+      }
     }
   }
 }

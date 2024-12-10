@@ -8,6 +8,52 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
+export const getStudent = /* GraphQL */ `query GetStudent($id: ID!) {
+  getStudent(id: $id) {
+    id
+    name
+    email
+    grade
+    enrroll
+    group
+    classs {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetStudentQueryVariables,
+  APITypes.GetStudentQuery
+>;
+export const listStudents = /* GraphQL */ `query ListStudents(
+  $filter: ModelStudentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      email
+      grade
+      enrroll
+      group
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListStudentsQueryVariables,
+  APITypes.ListStudentsQuery
+>;
 export const getAttendance = /* GraphQL */ `query GetAttendance($id: ID!) {
   getAttendance(id: $id) {
     id
@@ -17,9 +63,9 @@ export const getAttendance = /* GraphQL */ `query GetAttendance($id: ID!) {
     Student {
       id
       name
-      accountNumber
       email
       grade
+      enrroll
       group
       createdAt
       updatedAt
@@ -136,14 +182,14 @@ export const getClass = /* GraphQL */ `query GetClass($id: ID!) {
     description
     days
     startHour
-    Students {
-      nextToken
-      __typename
-    }
     grade
     group
     teacherID
     Attendances {
+      nextToken
+      __typename
+    }
+    Student {
       nextToken
       __typename
     }
@@ -215,57 +261,22 @@ export const classesByTeacherID = /* GraphQL */ `query ClassesByTeacherID(
   APITypes.ClassesByTeacherIDQueryVariables,
   APITypes.ClassesByTeacherIDQuery
 >;
-export const getStudent = /* GraphQL */ `query GetStudent($id: ID!) {
-  getStudent(id: $id) {
+export const getClassStudent = /* GraphQL */ `query GetClassStudent($id: ID!) {
+  getClassStudent(id: $id) {
     id
-    name
-    accountNumber
-    email
-    grade
-    group
-    classs {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetStudentQueryVariables,
-  APITypes.GetStudentQuery
->;
-export const listStudents = /* GraphQL */ `query ListStudents(
-  $filter: ModelStudentFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
+    studentId
+    classId
+    student {
       id
       name
-      accountNumber
       email
       grade
+      enrroll
       group
       createdAt
       updatedAt
       __typename
     }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListStudentsQueryVariables,
-  APITypes.ListStudentsQuery
->;
-export const getClassStudent = /* GraphQL */ `query GetClassStudent($id: ID!) {
-  getClassStudent(id: $id) {
-    id
-    classId
-    studentId
     class {
       id
       name
@@ -275,17 +286,6 @@ export const getClassStudent = /* GraphQL */ `query GetClassStudent($id: ID!) {
       grade
       group
       teacherID
-      createdAt
-      updatedAt
-      __typename
-    }
-    student {
-      id
-      name
-      accountNumber
-      email
-      grade
-      group
       createdAt
       updatedAt
       __typename
@@ -307,8 +307,8 @@ export const listClassStudents = /* GraphQL */ `query ListClassStudents(
   listClassStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      classId
       studentId
+      classId
       createdAt
       updatedAt
       __typename
@@ -320,36 +320,6 @@ export const listClassStudents = /* GraphQL */ `query ListClassStudents(
 ` as GeneratedQuery<
   APITypes.ListClassStudentsQueryVariables,
   APITypes.ListClassStudentsQuery
->;
-export const classStudentsByClassId = /* GraphQL */ `query ClassStudentsByClassId(
-  $classId: ID!
-  $sortDirection: ModelSortDirection
-  $filter: ModelClassStudentFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  classStudentsByClassId(
-    classId: $classId
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      classId
-      studentId
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ClassStudentsByClassIdQueryVariables,
-  APITypes.ClassStudentsByClassIdQuery
 >;
 export const classStudentsByStudentId = /* GraphQL */ `query ClassStudentsByStudentId(
   $studentId: ID!
@@ -367,8 +337,8 @@ export const classStudentsByStudentId = /* GraphQL */ `query ClassStudentsByStud
   ) {
     items {
       id
-      classId
       studentId
+      classId
       createdAt
       updatedAt
       __typename
@@ -380,4 +350,34 @@ export const classStudentsByStudentId = /* GraphQL */ `query ClassStudentsByStud
 ` as GeneratedQuery<
   APITypes.ClassStudentsByStudentIdQueryVariables,
   APITypes.ClassStudentsByStudentIdQuery
+>;
+export const classStudentsByClassId = /* GraphQL */ `query ClassStudentsByClassId(
+  $classId: ID!
+  $sortDirection: ModelSortDirection
+  $filter: ModelClassStudentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  classStudentsByClassId(
+    classId: $classId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      studentId
+      classId
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ClassStudentsByClassIdQueryVariables,
+  APITypes.ClassStudentsByClassIdQuery
 >;

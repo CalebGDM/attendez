@@ -2,24 +2,26 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateAttendanceInput = {
+export type CreateStudentInput = {
   id?: string | null,
-  day: string,
-  time: string,
-  classID: string,
-  attendanceStudentId?: string | null,
+  name: string,
+  email: string,
+  grade: string,
+  enrroll: string,
+  group: string,
 };
 
-export type ModelAttendanceConditionInput = {
-  day?: ModelStringInput | null,
-  time?: ModelStringInput | null,
-  classID?: ModelIDInput | null,
-  and?: Array< ModelAttendanceConditionInput | null > | null,
-  or?: Array< ModelAttendanceConditionInput | null > | null,
-  not?: ModelAttendanceConditionInput | null,
+export type ModelStudentConditionInput = {
+  name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  grade?: ModelStringInput | null,
+  enrroll?: ModelStringInput | null,
+  group?: ModelStringInput | null,
+  and?: Array< ModelStudentConditionInput | null > | null,
+  or?: Array< ModelStudentConditionInput | null > | null,
+  not?: ModelStudentConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  attendanceStudentId?: ModelIDInput | null,
 };
 
 export type ModelStringInput = {
@@ -62,41 +64,13 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type Attendance = {
-  __typename: "Attendance",
-  id: string,
-  day: string,
-  time: string,
-  classID: string,
-  Student?: Student | null,
-  createdAt: string,
-  updatedAt: string,
-  attendanceStudentId?: string | null,
-};
-
 export type Student = {
   __typename: "Student",
   id: string,
   name: string,
-  accountNumber: string,
   email: string,
   grade: string,
+  enrroll: string,
   group: string,
   classs?: ModelClassStudentConnection | null,
   createdAt: string,
@@ -112,10 +86,10 @@ export type ModelClassStudentConnection = {
 export type ClassStudent = {
   __typename: "ClassStudent",
   id: string,
-  classId: string,
   studentId: string,
-  class: Class,
+  classId: string,
   student: Student,
+  class: Class,
   createdAt: string,
   updatedAt: string,
 };
@@ -127,11 +101,11 @@ export type Class = {
   description?: string | null,
   days: Array< number >,
   startHour: string,
-  Students?: ModelClassStudentConnection | null,
   grade: string,
   group: string,
   teacherID: string,
   Attendances?: ModelAttendanceConnection | null,
+  Student?: ModelClassStudentConnection | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -140,6 +114,67 @@ export type ModelAttendanceConnection = {
   __typename: "ModelAttendanceConnection",
   items:  Array<Attendance | null >,
   nextToken?: string | null,
+};
+
+export type Attendance = {
+  __typename: "Attendance",
+  id: string,
+  day: string,
+  time: string,
+  classID: string,
+  Student?: Student | null,
+  createdAt: string,
+  updatedAt: string,
+  attendanceStudentId?: string | null,
+};
+
+export type UpdateStudentInput = {
+  id: string,
+  name?: string | null,
+  email?: string | null,
+  grade?: string | null,
+  enrroll?: string | null,
+  group?: string | null,
+};
+
+export type DeleteStudentInput = {
+  id: string,
+};
+
+export type CreateAttendanceInput = {
+  id?: string | null,
+  day: string,
+  time: string,
+  classID: string,
+  attendanceStudentId?: string | null,
+};
+
+export type ModelAttendanceConditionInput = {
+  day?: ModelStringInput | null,
+  time?: ModelStringInput | null,
+  classID?: ModelIDInput | null,
+  and?: Array< ModelAttendanceConditionInput | null > | null,
+  or?: Array< ModelAttendanceConditionInput | null > | null,
+  not?: ModelAttendanceConditionInput | null,
+  createdAt?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+  attendanceStudentId?: ModelIDInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type UpdateAttendanceInput = {
@@ -245,50 +280,15 @@ export type DeleteClassInput = {
   id: string,
 };
 
-export type CreateStudentInput = {
-  id?: string | null,
-  name: string,
-  accountNumber: string,
-  email: string,
-  grade: string,
-  group: string,
-};
-
-export type ModelStudentConditionInput = {
-  name?: ModelStringInput | null,
-  accountNumber?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  grade?: ModelStringInput | null,
-  group?: ModelStringInput | null,
-  and?: Array< ModelStudentConditionInput | null > | null,
-  or?: Array< ModelStudentConditionInput | null > | null,
-  not?: ModelStudentConditionInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-};
-
-export type UpdateStudentInput = {
-  id: string,
-  name?: string | null,
-  accountNumber?: string | null,
-  email?: string | null,
-  grade?: string | null,
-  group?: string | null,
-};
-
-export type DeleteStudentInput = {
-  id: string,
-};
-
 export type CreateClassStudentInput = {
   id?: string | null,
-  classId: string,
   studentId: string,
+  classId: string,
 };
 
 export type ModelClassStudentConditionInput = {
-  classId?: ModelIDInput | null,
   studentId?: ModelIDInput | null,
+  classId?: ModelIDInput | null,
   and?: Array< ModelClassStudentConditionInput | null > | null,
   or?: Array< ModelClassStudentConditionInput | null > | null,
   not?: ModelClassStudentConditionInput | null,
@@ -298,12 +298,32 @@ export type ModelClassStudentConditionInput = {
 
 export type UpdateClassStudentInput = {
   id: string,
-  classId?: string | null,
   studentId?: string | null,
+  classId?: string | null,
 };
 
 export type DeleteClassStudentInput = {
   id: string,
+};
+
+export type ModelStudentFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  grade?: ModelStringInput | null,
+  enrroll?: ModelStringInput | null,
+  group?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+  and?: Array< ModelStudentFilterInput | null > | null,
+  or?: Array< ModelStudentFilterInput | null > | null,
+  not?: ModelStudentFilterInput | null,
+};
+
+export type ModelStudentConnection = {
+  __typename: "ModelStudentConnection",
+  items:  Array<Student | null >,
+  nextToken?: string | null,
 };
 
 export type ModelAttendanceFilterInput = {
@@ -357,30 +377,10 @@ export type ModelClassFilterInput = {
   not?: ModelClassFilterInput | null,
 };
 
-export type ModelStudentFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  accountNumber?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  grade?: ModelStringInput | null,
-  group?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  and?: Array< ModelStudentFilterInput | null > | null,
-  or?: Array< ModelStudentFilterInput | null > | null,
-  not?: ModelStudentFilterInput | null,
-};
-
-export type ModelStudentConnection = {
-  __typename: "ModelStudentConnection",
-  items:  Array<Student | null >,
-  nextToken?: string | null,
-};
-
 export type ModelClassStudentFilterInput = {
   id?: ModelIDInput | null,
-  classId?: ModelIDInput | null,
   studentId?: ModelIDInput | null,
+  classId?: ModelIDInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelClassStudentFilterInput | null > | null,
@@ -388,16 +388,17 @@ export type ModelClassStudentFilterInput = {
   not?: ModelClassStudentFilterInput | null,
 };
 
-export type ModelSubscriptionAttendanceFilterInput = {
+export type ModelSubscriptionStudentFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  day?: ModelSubscriptionStringInput | null,
-  time?: ModelSubscriptionStringInput | null,
-  classID?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  grade?: ModelSubscriptionStringInput | null,
+  enrroll?: ModelSubscriptionStringInput | null,
+  group?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionAttendanceFilterInput | null > | null,
-  or?: Array< ModelSubscriptionAttendanceFilterInput | null > | null,
-  attendanceStudentId?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionStudentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionStudentFilterInput | null > | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -428,6 +429,18 @@ export type ModelSubscriptionStringInput = {
   beginsWith?: string | null,
   in?: Array< string | null > | null,
   notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionAttendanceFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  day?: ModelSubscriptionStringInput | null,
+  time?: ModelSubscriptionStringInput | null,
+  classID?: ModelSubscriptionIDInput | null,
+  createdAt?: ModelSubscriptionStringInput | null,
+  updatedAt?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionAttendanceFilterInput | null > | null,
+  or?: Array< ModelSubscriptionAttendanceFilterInput | null > | null,
+  attendanceStudentId?: ModelSubscriptionIDInput | null,
 };
 
 export type ModelSubscriptionTeacherFilterInput = {
@@ -466,27 +479,83 @@ export type ModelSubscriptionIntInput = {
   notIn?: Array< number | null > | null,
 };
 
-export type ModelSubscriptionStudentFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  accountNumber?: ModelSubscriptionStringInput | null,
-  email?: ModelSubscriptionStringInput | null,
-  grade?: ModelSubscriptionStringInput | null,
-  group?: ModelSubscriptionStringInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionStudentFilterInput | null > | null,
-  or?: Array< ModelSubscriptionStudentFilterInput | null > | null,
-};
-
 export type ModelSubscriptionClassStudentFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  classId?: ModelSubscriptionIDInput | null,
   studentId?: ModelSubscriptionIDInput | null,
+  classId?: ModelSubscriptionIDInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionClassStudentFilterInput | null > | null,
   or?: Array< ModelSubscriptionClassStudentFilterInput | null > | null,
+};
+
+export type CreateStudentMutationVariables = {
+  input: CreateStudentInput,
+  condition?: ModelStudentConditionInput | null,
+};
+
+export type CreateStudentMutation = {
+  createStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateStudentMutationVariables = {
+  input: UpdateStudentInput,
+  condition?: ModelStudentConditionInput | null,
+};
+
+export type UpdateStudentMutation = {
+  updateStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteStudentMutationVariables = {
+  input: DeleteStudentInput,
+  condition?: ModelStudentConditionInput | null,
+};
+
+export type DeleteStudentMutation = {
+  deleteStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateAttendanceMutationVariables = {
@@ -505,9 +574,9 @@ export type CreateAttendanceMutation = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -534,9 +603,9 @@ export type UpdateAttendanceMutation = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -563,9 +632,9 @@ export type DeleteAttendanceMutation = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -646,15 +715,15 @@ export type CreateClassMutation = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
     Attendances?:  {
       __typename: "ModelAttendanceConnection",
+      nextToken?: string | null,
+    } | null,
+    Student?:  {
+      __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -675,15 +744,15 @@ export type UpdateClassMutation = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
     Attendances?:  {
       __typename: "ModelAttendanceConnection",
+      nextToken?: string | null,
+    } | null,
+    Student?:  {
+      __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -704,10 +773,6 @@ export type DeleteClassMutation = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
@@ -715,72 +780,7 @@ export type DeleteClassMutation = {
       __typename: "ModelAttendanceConnection",
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateStudentMutationVariables = {
-  input: CreateStudentInput,
-  condition?: ModelStudentConditionInput | null,
-};
-
-export type CreateStudentMutation = {
-  createStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateStudentMutationVariables = {
-  input: UpdateStudentInput,
-  condition?: ModelStudentConditionInput | null,
-};
-
-export type UpdateStudentMutation = {
-  updateStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteStudentMutationVariables = {
-  input: DeleteStudentInput,
-  condition?: ModelStudentConditionInput | null,
-};
-
-export type DeleteStudentMutation = {
-  deleteStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
+    Student?:  {
       __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
@@ -798,8 +798,19 @@ export type CreateClassStudentMutation = {
   createClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -810,17 +821,6 @@ export type CreateClassStudentMutation = {
       grade: string,
       group: string,
       teacherID: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    student:  {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -838,8 +838,19 @@ export type UpdateClassStudentMutation = {
   updateClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -850,17 +861,6 @@ export type UpdateClassStudentMutation = {
       grade: string,
       group: string,
       teacherID: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    student:  {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -878,8 +878,19 @@ export type DeleteClassStudentMutation = {
   deleteClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -893,19 +904,54 @@ export type DeleteClassStudentMutation = {
       createdAt: string,
       updatedAt: string,
     },
-    student:  {
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type GetStudentQueryVariables = {
+  id: string,
+};
+
+export type GetStudentQuery = {
+  getStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListStudentsQueryVariables = {
+  filter?: ModelStudentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListStudentsQuery = {
+  listStudents?:  {
+    __typename: "ModelStudentConnection",
+    items:  Array< {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
   } | null,
 };
 
@@ -924,9 +970,9 @@ export type GetAttendanceQuery = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -1035,15 +1081,15 @@ export type GetClassQuery = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
     Attendances?:  {
       __typename: "ModelAttendanceConnection",
+      nextToken?: string | null,
+    } | null,
+    Student?:  {
+      __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1105,52 +1151,6 @@ export type ClassesByTeacherIDQuery = {
   } | null,
 };
 
-export type GetStudentQueryVariables = {
-  id: string,
-};
-
-export type GetStudentQuery = {
-  getStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListStudentsQueryVariables = {
-  filter?: ModelStudentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListStudentsQuery = {
-  listStudents?:  {
-    __typename: "ModelStudentConnection",
-    items:  Array< {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetClassStudentQueryVariables = {
   id: string,
 };
@@ -1159,8 +1159,19 @@ export type GetClassStudentQuery = {
   getClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -1171,17 +1182,6 @@ export type GetClassStudentQuery = {
       grade: string,
       group: string,
       teacherID: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    student:  {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1202,31 +1202,8 @@ export type ListClassStudentsQuery = {
     items:  Array< {
       __typename: "ClassStudent",
       id: string,
-      classId: string,
       studentId: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ClassStudentsByClassIdQueryVariables = {
-  classId: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelClassStudentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ClassStudentsByClassIdQuery = {
-  classStudentsByClassId?:  {
-    __typename: "ModelClassStudentConnection",
-    items:  Array< {
-      __typename: "ClassStudent",
-      id: string,
       classId: string,
-      studentId: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -1248,12 +1225,101 @@ export type ClassStudentsByStudentIdQuery = {
     items:  Array< {
       __typename: "ClassStudent",
       id: string,
-      classId: string,
       studentId: string,
+      classId: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
     nextToken?: string | null,
+  } | null,
+};
+
+export type ClassStudentsByClassIdQueryVariables = {
+  classId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelClassStudentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ClassStudentsByClassIdQuery = {
+  classStudentsByClassId?:  {
+    __typename: "ModelClassStudentConnection",
+    items:  Array< {
+      __typename: "ClassStudent",
+      id: string,
+      studentId: string,
+      classId: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type OnCreateStudentSubscriptionVariables = {
+  filter?: ModelSubscriptionStudentFilterInput | null,
+};
+
+export type OnCreateStudentSubscription = {
+  onCreateStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateStudentSubscriptionVariables = {
+  filter?: ModelSubscriptionStudentFilterInput | null,
+};
+
+export type OnUpdateStudentSubscription = {
+  onUpdateStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteStudentSubscriptionVariables = {
+  filter?: ModelSubscriptionStudentFilterInput | null,
+};
+
+export type OnDeleteStudentSubscription = {
+  onDeleteStudent?:  {
+    __typename: "Student",
+    id: string,
+    name: string,
+    email: string,
+    grade: string,
+    enrroll: string,
+    group: string,
+    classs?:  {
+      __typename: "ModelClassStudentConnection",
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -1272,9 +1338,9 @@ export type OnCreateAttendanceSubscription = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -1300,9 +1366,9 @@ export type OnUpdateAttendanceSubscription = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -1328,9 +1394,9 @@ export type OnDeleteAttendanceSubscription = {
       __typename: "Student",
       id: string,
       name: string,
-      accountNumber: string,
       email: string,
       grade: string,
+      enrroll: string,
       group: string,
       createdAt: string,
       updatedAt: string,
@@ -1407,15 +1473,15 @@ export type OnCreateClassSubscription = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
     Attendances?:  {
       __typename: "ModelAttendanceConnection",
+      nextToken?: string | null,
+    } | null,
+    Student?:  {
+      __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1435,15 +1501,15 @@ export type OnUpdateClassSubscription = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
     Attendances?:  {
       __typename: "ModelAttendanceConnection",
+      nextToken?: string | null,
+    } | null,
+    Student?:  {
+      __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -1463,10 +1529,6 @@ export type OnDeleteClassSubscription = {
     description?: string | null,
     days: Array< number >,
     startHour: string,
-    Students?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
     grade: string,
     group: string,
     teacherID: string,
@@ -1474,69 +1536,7 @@ export type OnDeleteClassSubscription = {
       __typename: "ModelAttendanceConnection",
       nextToken?: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateStudentSubscriptionVariables = {
-  filter?: ModelSubscriptionStudentFilterInput | null,
-};
-
-export type OnCreateStudentSubscription = {
-  onCreateStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateStudentSubscriptionVariables = {
-  filter?: ModelSubscriptionStudentFilterInput | null,
-};
-
-export type OnUpdateStudentSubscription = {
-  onUpdateStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
-      __typename: "ModelClassStudentConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteStudentSubscriptionVariables = {
-  filter?: ModelSubscriptionStudentFilterInput | null,
-};
-
-export type OnDeleteStudentSubscription = {
-  onDeleteStudent?:  {
-    __typename: "Student",
-    id: string,
-    name: string,
-    accountNumber: string,
-    email: string,
-    grade: string,
-    group: string,
-    classs?:  {
+    Student?:  {
       __typename: "ModelClassStudentConnection",
       nextToken?: string | null,
     } | null,
@@ -1553,8 +1553,19 @@ export type OnCreateClassStudentSubscription = {
   onCreateClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -1565,17 +1576,6 @@ export type OnCreateClassStudentSubscription = {
       grade: string,
       group: string,
       teacherID: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    student:  {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1592,8 +1592,19 @@ export type OnUpdateClassStudentSubscription = {
   onUpdateClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -1604,17 +1615,6 @@ export type OnUpdateClassStudentSubscription = {
       grade: string,
       group: string,
       teacherID: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    student:  {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1631,8 +1631,19 @@ export type OnDeleteClassStudentSubscription = {
   onDeleteClassStudent?:  {
     __typename: "ClassStudent",
     id: string,
-    classId: string,
     studentId: string,
+    classId: string,
+    student:  {
+      __typename: "Student",
+      id: string,
+      name: string,
+      email: string,
+      grade: string,
+      enrroll: string,
+      group: string,
+      createdAt: string,
+      updatedAt: string,
+    },
     class:  {
       __typename: "Class",
       id: string,
@@ -1643,17 +1654,6 @@ export type OnDeleteClassStudentSubscription = {
       grade: string,
       group: string,
       teacherID: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    student:  {
-      __typename: "Student",
-      id: string,
-      name: string,
-      accountNumber: string,
-      email: string,
-      grade: string,
-      group: string,
       createdAt: string,
       updatedAt: string,
     },
