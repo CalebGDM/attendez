@@ -8,6 +8,78 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
+export const createStudent = /* GraphQL */ `mutation CreateStudent(
+  $input: CreateStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  createStudent(input: $input, condition: $condition) {
+    id
+    name
+    email
+    grade
+    enrroll
+    group
+    classs {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateStudentMutationVariables,
+  APITypes.CreateStudentMutation
+>;
+export const updateStudent = /* GraphQL */ `mutation UpdateStudent(
+  $input: UpdateStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  updateStudent(input: $input, condition: $condition) {
+    id
+    name
+    email
+    grade
+    enrroll
+    group
+    classs {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateStudentMutationVariables,
+  APITypes.UpdateStudentMutation
+>;
+export const deleteStudent = /* GraphQL */ `mutation DeleteStudent(
+  $input: DeleteStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  deleteStudent(input: $input, condition: $condition) {
+    id
+    name
+    email
+    grade
+    enrroll
+    group
+    classs {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteStudentMutationVariables,
+  APITypes.DeleteStudentMutation
+>;
 export const createAttendance = /* GraphQL */ `mutation CreateAttendance(
   $input: CreateAttendanceInput!
   $condition: ModelAttendanceConditionInput
@@ -20,9 +92,9 @@ export const createAttendance = /* GraphQL */ `mutation CreateAttendance(
     Student {
       id
       name
-      accountNumber
       email
       grade
+      enrroll
       group
       createdAt
       updatedAt
@@ -50,9 +122,9 @@ export const updateAttendance = /* GraphQL */ `mutation UpdateAttendance(
     Student {
       id
       name
-      accountNumber
       email
       grade
+      enrroll
       group
       createdAt
       updatedAt
@@ -80,9 +152,9 @@ export const deleteAttendance = /* GraphQL */ `mutation DeleteAttendance(
     Student {
       id
       name
-      accountNumber
       email
       grade
+      enrroll
       group
       createdAt
       updatedAt
@@ -168,14 +240,14 @@ export const createClass = /* GraphQL */ `mutation CreateClass(
     description
     days
     startHour
-    Students {
-      nextToken
-      __typename
-    }
     grade
     group
     teacherID
     Attendances {
+      nextToken
+      __typename
+    }
+    Student {
       nextToken
       __typename
     }
@@ -198,14 +270,14 @@ export const updateClass = /* GraphQL */ `mutation UpdateClass(
     description
     days
     startHour
-    Students {
-      nextToken
-      __typename
-    }
     grade
     group
     teacherID
     Attendances {
+      nextToken
+      __typename
+    }
+    Student {
       nextToken
       __typename
     }
@@ -228,14 +300,14 @@ export const deleteClass = /* GraphQL */ `mutation DeleteClass(
     description
     days
     startHour
-    Students {
-      nextToken
-      __typename
-    }
     grade
     group
     teacherID
     Attendances {
+      nextToken
+      __typename
+    }
+    Student {
       nextToken
       __typename
     }
@@ -248,86 +320,25 @@ export const deleteClass = /* GraphQL */ `mutation DeleteClass(
   APITypes.DeleteClassMutationVariables,
   APITypes.DeleteClassMutation
 >;
-export const createStudent = /* GraphQL */ `mutation CreateStudent(
-  $input: CreateStudentInput!
-  $condition: ModelStudentConditionInput
-) {
-  createStudent(input: $input, condition: $condition) {
-    id
-    name
-    accountNumber
-    email
-    grade
-    group
-    classs {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateStudentMutationVariables,
-  APITypes.CreateStudentMutation
->;
-export const updateStudent = /* GraphQL */ `mutation UpdateStudent(
-  $input: UpdateStudentInput!
-  $condition: ModelStudentConditionInput
-) {
-  updateStudent(input: $input, condition: $condition) {
-    id
-    name
-    accountNumber
-    email
-    grade
-    group
-    classs {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateStudentMutationVariables,
-  APITypes.UpdateStudentMutation
->;
-export const deleteStudent = /* GraphQL */ `mutation DeleteStudent(
-  $input: DeleteStudentInput!
-  $condition: ModelStudentConditionInput
-) {
-  deleteStudent(input: $input, condition: $condition) {
-    id
-    name
-    accountNumber
-    email
-    grade
-    group
-    classs {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteStudentMutationVariables,
-  APITypes.DeleteStudentMutation
->;
 export const createClassStudent = /* GraphQL */ `mutation CreateClassStudent(
   $input: CreateClassStudentInput!
   $condition: ModelClassStudentConditionInput
 ) {
   createClassStudent(input: $input, condition: $condition) {
     id
-    classId
     studentId
+    classId
+    student {
+      id
+      name
+      email
+      grade
+      enrroll
+      group
+      createdAt
+      updatedAt
+      __typename
+    }
     class {
       id
       name
@@ -337,17 +348,6 @@ export const createClassStudent = /* GraphQL */ `mutation CreateClassStudent(
       grade
       group
       teacherID
-      createdAt
-      updatedAt
-      __typename
-    }
-    student {
-      id
-      name
-      accountNumber
-      email
-      grade
-      group
       createdAt
       updatedAt
       __typename
@@ -367,8 +367,19 @@ export const updateClassStudent = /* GraphQL */ `mutation UpdateClassStudent(
 ) {
   updateClassStudent(input: $input, condition: $condition) {
     id
-    classId
     studentId
+    classId
+    student {
+      id
+      name
+      email
+      grade
+      enrroll
+      group
+      createdAt
+      updatedAt
+      __typename
+    }
     class {
       id
       name
@@ -378,17 +389,6 @@ export const updateClassStudent = /* GraphQL */ `mutation UpdateClassStudent(
       grade
       group
       teacherID
-      createdAt
-      updatedAt
-      __typename
-    }
-    student {
-      id
-      name
-      accountNumber
-      email
-      grade
-      group
       createdAt
       updatedAt
       __typename
@@ -408,8 +408,19 @@ export const deleteClassStudent = /* GraphQL */ `mutation DeleteClassStudent(
 ) {
   deleteClassStudent(input: $input, condition: $condition) {
     id
-    classId
     studentId
+    classId
+    student {
+      id
+      name
+      email
+      grade
+      enrroll
+      group
+      createdAt
+      updatedAt
+      __typename
+    }
     class {
       id
       name
@@ -419,17 +430,6 @@ export const deleteClassStudent = /* GraphQL */ `mutation DeleteClassStudent(
       grade
       group
       teacherID
-      createdAt
-      updatedAt
-      __typename
-    }
-    student {
-      id
-      name
-      accountNumber
-      email
-      grade
-      group
       createdAt
       updatedAt
       __typename

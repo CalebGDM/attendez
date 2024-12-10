@@ -5,7 +5,7 @@ export default [
       "description": "Introducción a las matemáticas básicas.",
       "days": [1, 3, 5],
       "startHour": "10:00 AM",
-      "teacher": "Juan Pérez",
+      "teacher": {name:"Juan Pérez"},
       "group": "A",
       "grade": "1"
     },
@@ -15,7 +15,7 @@ export default [
       "description": "Fundamentos de la física clásica.",
       "days": [2, 4],
       "startHour": "11:00 AM",
-      "teacher": "Ana Gómez",
+      "teacher": {name:"Juan Pérez"},
       "group": "B",
       "grade": "2"
     },
@@ -25,7 +25,7 @@ export default [
       "description": "Química orgánica y sus aplicaciones.",
       "days": [1, 3],
       "startHour": "1:00 PM",
-      "teacher": "Carlos Ramírez",
+      "teacher": {name:"Juan Pérez"},
       "group": "C",
       "grade": "3"
     },
@@ -35,7 +35,7 @@ export default [
       "description": "Lenguajes de programación y estructuras de datos.",
       "days": [2,5],
       "startHour": "2:00 PM",
-      "teacher": "Marta Rodríguez",
+      "teacher": {name:"Juan Pérez"},
       "group": "A",
       "grade": "4"
     }

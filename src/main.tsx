@@ -4,7 +4,10 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Class from './pages/ClassesDashboard'
 import Student from './pages/StudentRegister'
+import { Amplify } from 'aws-amplify';
+import config from './amplifyconfiguration.json';
 
+Amplify.configure(config);
 
 
 createRoot(document.getElementById('root')!).render(
