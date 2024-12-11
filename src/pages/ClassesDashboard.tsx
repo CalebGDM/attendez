@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import clases from "../data/clases";
+
 import QRCode from "react-qr-code";
 import { ClassType } from "../types";
 import { generateClient, GraphQLResult } from "aws-amplify/api";
@@ -7,17 +7,12 @@ import { listClasses } from "../graphql/queries";
 
 function Class() {
   const [classes, setClasses] = useState<ClassType[]>();
-  const [currentClassID, setCurrentClassID] = useState<string>(classes ? classes[0].id : clases[0].id);
-  const [currentClass, setCurrentClass] = useState<ClassType | undefined>(
-    clases[0]
-  );
+ 
+  const [currentClass, setCurrentClass] = useState<ClassType>();
+  
   const [active, setActive] = useState<boolean>(false);
   const [newClass, setNewClass] = useState<boolean>(false);
   const client = generateClient();
-  const handleCurrentClass = (id: string) => {
-    setCurrentClassID(id);
-    setCurrentClass(clases.find((currCalss) => currCalss.id == currentClassID));
-  };
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -34,8 +29,16 @@ function Class() {
       }
     };
     fetchClasses();
-  }, []);
-  console.log(classes)
+    
+  });
+
+  useEffect(() => {
+    if(classes !== undefined)
+    setCurrentClass(classes[0])
+  }, [classes])
+
+  
+  
   return (
     <div>
       <h1>Clases</h1>
@@ -69,7 +72,7 @@ function Class() {
       <div>
         <div>
           {classes ? classes.map((classItem) => (
-            <button onClick={() => handleCurrentClass(classItem.id)}>
+            <button onClick={() => setCurrentClass(classItem)}>
               {classItem.name}
             </button>
           )) : null}
